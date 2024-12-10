@@ -20,7 +20,7 @@ def check_trail(
     if current_value != next_value:
         return
 
-    if current_value == next_value and current_value == 9:
+    if current_value == 9:
         if type(ends) is set:
             ends.add((row_idx, col_idx))
         else:
