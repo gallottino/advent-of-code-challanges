@@ -35,6 +35,7 @@ def check_trail(
 
     return
 
+
 def solve_part1(mount: list[list[str]]) -> int:
     total = 0
     for row_idx, row in enumerate(mount):
@@ -46,6 +47,7 @@ def solve_part1(mount: list[list[str]]) -> int:
 
     return total
 
+
 def solve_part2(mount: list[list[str]]) -> int:
     total = 0
     for row_idx, row in enumerate(mount):
@@ -56,6 +58,7 @@ def solve_part2(mount: list[list[str]]) -> int:
                 total += len(ends)
 
     return total
+
 
 def main() -> None:
     with open("input.txt") as file:

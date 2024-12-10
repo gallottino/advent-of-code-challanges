@@ -1,15 +1,15 @@
-def get_sorted_lists(data) -> tuple[list[int],list[int]]:
+def get_sorted_lists(data) -> tuple[list[int], list[int]]:
     first_array = []
     second_array = []
 
     with open("input.txt", "r") as file:
         data = file.read().splitlines()
-        
+
         for line in data:
             [first, second] = line.split("   ")
             first_array.append(int(first))
             second_array.append(int(second))
-    
+
     return first_array, second_array
 
 
@@ -32,9 +32,9 @@ def get_silimarity_score(first_array, second_array) -> int:
             current_idx += 1
 
         similiarity_score += repetition * number1
-    
+
     return similiarity_score
-        
+
 
 def main() -> None:
     first_array, second_array = get_sorted_lists("input.txt")
@@ -44,7 +44,7 @@ def main() -> None:
 
     print("Part 1: ", get_total_distance(first_array, second_array))
     print("Part 2: ", get_silimarity_score(first_array, second_array))
-    
+
 
 if __name__ == "__main__":
     main()
