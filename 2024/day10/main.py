@@ -3,7 +3,7 @@ def in_bounds(row_idx: int, col_idx: int, mount: list[str]) -> bool:
 
 
 def check_trail(
-    current_pos: list[int, int], mount: list[str], next_value: int, ends: set
+    current_pos: list[int, int], mount: list[str], next_value: int, ends: set | list
 ) -> None:
     offsets = [
         [0, 1],
@@ -21,7 +21,10 @@ def check_trail(
         return
 
     if current_value == next_value and current_value == 9:
-        ends.add((row_idx, col_idx))
+        if type(ends) is set:
+            ends.add((row_idx, col_idx))
+        else:
+            ends.append((row_idx, col_idx))
         return
 
     for offset in offsets:
@@ -31,7 +34,6 @@ def check_trail(
         )
 
     return
-
 
 def solve_part1(mount: list[list[str]]) -> int:
     total = 0
@@ -44,12 +46,23 @@ def solve_part1(mount: list[list[str]]) -> int:
 
     return total
 
+def solve_part2(mount: list[list[str]]) -> int:
+    total = 0
+    for row_idx, row in enumerate(mount):
+        for col_idx, cell in enumerate(row):
+            if cell == "0":
+                ends = []
+                check_trail([row_idx, col_idx], mount, 0, ends)
+                total += len(ends)
+
+    return total
 
 def main() -> None:
     with open("input.txt") as file:
         data = file.read().splitlines()
         mount = [list(row) for row in data]
         print("Part 1: ", solve_part1(mount))
+        print("Part 2: ", solve_part2(mount))
 
 
 if __name__ == "__main__":
